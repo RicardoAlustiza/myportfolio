@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { ProjectCard } from "./ProjectCard";
 
 export const ProjectsComponent = () => {
   return (
@@ -14,12 +15,20 @@ export const ProjectsComponent = () => {
         <h2 className="text-3xl font-bold mb-8">Proyectos</h2>
         <div className="grid md:grid-cols-2 gap-6">
           <div className="p-4 shadow rounded bg-gray-700 text-white">
-            <h3 className="text-xl font-semibold">Proyecto 1</h3>
-            <p className="text-sm">Descripción breve del proyecto.</p>
+            <ProjectCard
+              image="images\1920x1080-aesthetic-glrfk0ntspz3tvxg.jpg"
+              title="Proyecto 1"
+              description="Descripción breve del proyecto 1."
+              link="https://your-live-link.com"
+            />
           </div>
           <div className="p-4 shadow rounded bg-gray-700 text-white">
-            <h3 className="text-xl font-semibold">Proyecto 2</h3>
-            <p className="text-sm">Descripción breve del proyecto.</p>
+            <ProjectCard
+              image="images\1920x1080-aesthetic-glrfk0ntspz3tvxg.jpg"
+              title="Proyecto 2"
+              description="Descripción breve del proyecto 2."
+              link="https://your-live-link.com"
+            />
           </div>
         </div>
       </div>

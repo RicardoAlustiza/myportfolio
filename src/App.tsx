@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { HeroComponent } from "./components/HeroComponent"
 import { NavBarComponent } from "./components/NavBarComponent";
 import { AboutComponent } from "./components/AboutComponent";
@@ -8,11 +7,9 @@ import { FooterComponent } from "./components/FooterComponent";
 
 function App() {
 
-  const [darkMode, setDarkMode] = useState(false);
-
   return (
-    <div className={darkMode ? 'dark bg-gray-900 text-white' : 'bg-white text-gray-900'}>
-      <NavBarComponent darkMode={darkMode} toggleDarkMode={() => setDarkMode(!darkMode)} />
+    <div className={'dark:bg-gray-900 dark:text-white bg-white text-gray-900'}>
+      <NavBarComponent />
       <HeroComponent />
       <AboutComponent />
       <ProjectsComponent />

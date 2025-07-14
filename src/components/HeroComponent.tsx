@@ -10,7 +10,7 @@ export const HeroComponent = () => {
       transition={{ duration: 1 }}
     >
       <h1 className="text-5xl font-bold">Hola, soy Ricardo Alustiza</h1>
-      <p className="mt-4 text-lg">Desarrollador Frontend con pasión por crear experiencias digitales impactantes.</p>
+      <p className="mt-4 text-lg">Ingeniero de Software con pasión por crear experiencias digitales impactantes.</p>
     </motion.section>
     )
 }

@@ -35,7 +35,7 @@ export const ContactComponent = () => {
           <input type="text" name="name" placeholder="Tu nombre" required className="p-2 border rounded text-white" />
           <input type="email" name="email" placeholder="Tu correo" required className="p-2 border rounded text-white" />
           <textarea name="message" placeholder="Tu mensaje" required className="p-2 border rounded h-32 text-white" />
-          <button type="submit" className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+          <button type="submit" className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 cursor-pointer">
             Enviar
           </button>
         </form>
