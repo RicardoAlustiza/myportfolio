@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { supabase } from '../lib/supabase';
 
 export const ContactComponent = () => {
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -9,19 +10,15 @@ export const ContactComponent = () => {
     const form = e.currentTarget;
     const data = new FormData(form);
 
-    const res = await fetch(import.meta.env.VITE_NEXT_PUBLIC_FORMSPREE_ENDPOINT, {
-      method: 'POST',
+    const { error } = await supabase.functions.invoke('send-contact', {
       body: data,
-      headers: {
-        Accept: 'application/json',
-      },
     });
 
-    if (res.ok) {
+    if (error) {
+      setStatus('error');
+    } else {
       setStatus('success');
       form.reset();
-    } else {
-      setStatus('error');
     }
   };
 
