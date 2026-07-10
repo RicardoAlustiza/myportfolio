@@ -1,37 +1,43 @@
-import { motion } from "framer-motion";
-import { ProjectCard } from "./ProjectCard";
+import { motion } from 'framer-motion';
+import { ProjectCard } from './ProjectCard';
+import { SectionHeading } from './ui/SectionHeading';
+import { useLanguage } from '../context/LanguageContext';
+import { PROJECTS } from '../data/portfolio';
+import type { Project } from '../types';
 
 export const ProjectsComponent = () => {
+  const { t } = useLanguage();
+
+  const localizedProjects: Project[] = PROJECTS.map((p) => ({
+    ...p,
+    ...(t.projects.items[p.id] ?? { title: p.id, description: '' }),
+  }));
+
   return (
-    <motion.section 
-      id="projects" 
-      className="py-20 px-6"
-      initial={{ opacity: 0 }} 
-      whileInView={{ opacity: 1 }} 
+    <motion.section
+      id="projects"
+      className="py-24 px-6"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
     >
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold mb-8">Proyectos</h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="p-4 shadow rounded bg-gray-700 text-white">
-            <ProjectCard
-              image="images\1920x1080-aesthetic-glrfk0ntspz3tvxg.jpg"
-              title="Proyecto 1"
-              description="Descripción breve del proyecto 1."
-              link="https://your-live-link.com"
-            />
-          </div>
-          <div className="p-4 shadow rounded bg-gray-700 text-white">
-            <ProjectCard
-              image="images\1920x1080-aesthetic-glrfk0ntspz3tvxg.jpg"
-              title="Proyecto 2"
-              description="Descripción breve del proyecto 2."
-              link="https://your-live-link.com"
-            />
-          </div>
+      <div className="mx-auto max-w-5xl">
+        <SectionHeading title={t.projects.title} subtitle={t.projects.subtitle} />
+        <div className="grid gap-8 sm:grid-cols-2">
+          {localizedProjects.map((project, i) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.15, duration: 0.5 }}
+            >
+              <ProjectCard {...project} />
+            </motion.div>
+          ))}
         </div>
       </div>
     </motion.section>
   );
-}
+};

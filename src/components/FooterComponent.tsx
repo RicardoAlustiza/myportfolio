@@ -1,16 +1,37 @@
-import { Github } from "lucide-react";
+import { Github, Linkedin } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { SOCIAL_LINKS } from '../data/portfolio';
+
+const SOCIAL_ICONS: Record<string, React.ReactNode> = {
+  GitHub: <Github className="h-5 w-5" />,
+  LinkedIn: <Linkedin className="h-5 w-5" />,
+};
 
 export const FooterComponent = () => {
+  const { t } = useLanguage();
+  const currentYear = new Date().getFullYear();
 
-    const currentYear = new Date().getFullYear();
-
-    return (
-        <footer className="py-4 text-center shadow-inner flex justify-between p-4 m-auto items-center max-w-7xl">
-            <p className="text-sm">© {currentYear} Ricardo Alustiza</p>
-            <Github className="inline-block w-6 h-6 text-gray-600 hover:text-gray-800 transition-colors cursor-pointer" 
-                onClick={() => window.open("https://github.com/RicardoAlustiza", "_blank")}
-            />
-
-        </footer>
+  return (
+    <footer className="border-t border-gray-200 bg-white px-6 py-6 dark:border-gray-700 dark:bg-gray-900">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 sm:flex-row">
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          © {currentYear} Ricardo Alustiza. {t.footer.madeWith}
+        </p>
+        <div className="flex items-center gap-4">
+          {SOCIAL_LINKS.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={link.label}
+              className="text-gray-500 transition-colors hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
+            >
+              {SOCIAL_ICONS[link.label]}
+            </a>
+          ))}
+        </div>
+      </div>
+    </footer>
   );
-}
+};
